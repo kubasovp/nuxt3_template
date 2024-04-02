@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { registerUser } = useFirebaseAuth();
+const { registerUser, signUser } = useFirebaseAuth();
 
 const user = reactive({
 	email: "",
@@ -10,6 +10,11 @@ async function handleRegistration() {
 	console.log(user.email, user.password)
 	await registerUser(user.email, user.password);
 }
+
+async function handleSignIn() {
+	console.log(user.email, user.password)
+	await signUser(user.email, user.password);
+}
 </script>
 
 <template>
@@ -17,25 +22,28 @@ async function handleRegistration() {
 	  <div class="login_form">
 		  <form>
 			  <fieldset>
-				  <legend>Войти</legend>
+				  <legend>Зарегистрироваться</legend>
+
+				  <input v-model="user.email" type="email" name="email" id="">
+			    <input v-model="user.password" type="password" name="password" id="">
+
+				  <button @click.prevent="handleRegistration">Зарегистрироваться</button>
 			  </fieldset>
-
-			  <input v-model="user.email" type="email" name="email" id="">
-			  <input v-model="user.password" type="password" name="password" id="">
-
-			  <button @click.prevent="handleRegistration">Войти</button>
 		  </form>
 	  </div>
 
 	  <div class="authorization_form">
 		  <fieldset>
-			  <legend>Зарегистрироваться</legend>
+			  <legend>Войти</legend>
+
+		    <input v-model="user.email" type="email" name="email" id="">
+		    <input v-model="user.password" type="password" name="password" id="">
+
+			  <button @click.prevent="handleSignIn">Войти</button>
 		  </fieldset>
-		  <input type="email" name="" id="">
-		  <input type="password" name="" id="">
 	  </div>
 
-	  <NuxtWelcome />
+<!--	  <NuxtWelcome />-->
   </div>
 </template>
 
