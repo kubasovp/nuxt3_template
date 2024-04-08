@@ -1,19 +1,27 @@
 <script setup lang="ts">
-const { registerUser, signUser } = useFirebaseAuth();
+const { registerUser, signUser, getUserState, userSignOut } = useFirebaseAuth();
 
-const user = reactive({
+const form = reactive({
 	email: "",
 	password: ""
 })
 
-async function handleRegistration() {
-	console.log(user.email, user.password)
-	await registerUser(user.email, user.password);
-}
+let userAcc = reactive({});
 
 async function handleSignIn() {
-	console.log(user.email, user.password)
-	await signUser(user.email, user.password);
+	userAcc = await signUser(form.email, form.password);
+}
+
+async function exit() {
+	userAcc = await userSignOut();
+}
+
+async function handleRegistration() {
+	await registerUser(form.email, form.password);
+}
+
+async function who() {
+	await getUserState();
 }
 </script>
 
@@ -23,10 +31,8 @@ async function handleSignIn() {
 		  <form>
 			  <fieldset>
 				  <legend>Зарегистрироваться</legend>
-
-				  <input v-model="user.email" type="email" name="email" id="">
-			    <input v-model="user.password" type="password" name="password" id="">
-
+				  <input v-model="form.email" type="email" name="email" id="">
+			    <input v-model="form.password" type="password" name="password" id="">
 				  <button @click.prevent="handleRegistration">Зарегистрироваться</button>
 			  </fieldset>
 		  </form>
@@ -35,15 +41,18 @@ async function handleSignIn() {
 	  <div class="authorization_form">
 		  <fieldset>
 			  <legend>Войти</legend>
-
-		    <input v-model="user.email" type="email" name="email" id="">
-		    <input v-model="user.password" type="password" name="password" id="">
-
+			  <p>test@test.ru</p>
+			  <p>123456</p>
+		    <input v-model="form.email" type="email" name="email" id="">
+		    <input v-model="form.password" type="password" name="password" id="">
 			  <button @click.prevent="handleSignIn">Войти</button>
 		  </fieldset>
 	  </div>
 
-<!--	  <NuxtWelcome />-->
+	  <button @click.prevent="who">Who</button>
+	  <button @click.prevent="exit">Выйти</button>
+
+<!--	  <h2>Вы вошли как {{ userAcc.user.email }}</h2>-->
   </div>
 </template>
 

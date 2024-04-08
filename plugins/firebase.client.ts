@@ -16,11 +16,10 @@ export default defineNuxtPlugin(nuxtApp => {
 		appId: "1:879117160994:web:dd41e9c564a8232305307b"
 	};
 
-	const app = initializeApp(firebaseConfig)
-
-	const analytics = getAnalytics(app)
-	const auth = getAuth(app)
-	const firestore = getFirestore(app)
+	const app = initializeApp(firebaseConfig);
+	const analytics = getAnalytics(app);
+	const auth = getAuth(app);
+	const firestore = getFirestore(app);
 
 	nuxtApp.vueApp.provide('auth', auth)
 	nuxtApp.provide('auth', auth)
