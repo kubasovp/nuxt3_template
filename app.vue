@@ -24,7 +24,7 @@ async function who() {
 
 async function exit() {
 	userAcc = await userSignOut();
-	isLogin.value = true;
+	isLogin.value = false;
 }
 </script>
 
