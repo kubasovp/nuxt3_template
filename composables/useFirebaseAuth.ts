@@ -1,5 +1,5 @@
 import {
-	signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+	createUserWithEmailAndPassword, signInWithEmailAndPassword,
 	onAuthStateChanged, signOut, type User, type Auth
 } from 'firebase/auth'
 
