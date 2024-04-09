@@ -7,21 +7,24 @@ const form = reactive({
 })
 
 let userAcc = reactive({});
-
-async function handleSignIn() {
-	userAcc = await signUser(form.email, form.password);
-}
-
-async function exit() {
-	userAcc = await userSignOut();
-}
+let isLogin = ref(false);
 
 async function handleRegistration() {
 	await registerUser(form.email, form.password);
 }
 
+async function handleSignIn() {
+	userAcc = await signUser(form.email, form.password);
+	isLogin.value = true;
+}
+
 async function who() {
 	await getUserState();
+}
+
+async function exit() {
+	userAcc = await userSignOut();
+	isLogin.value = true;
 }
 </script>
 
@@ -52,7 +55,8 @@ async function who() {
 	  <button @click.prevent="who">Who</button>
 	  <button @click.prevent="exit">Выйти</button>
 
-<!--	  <h2>Вы вошли как {{ userAcc.user.email }}</h2>-->
+	  <h2 v-if="isLogin">Вы вошли как {{ userAcc.user.email }}</h2>
+	  <h2 v-else>Вы не вошли</h2>
   </div>
 </template>
 
