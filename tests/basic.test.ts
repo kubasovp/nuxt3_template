@@ -8,8 +8,12 @@ describe('example', async () => {
 		server: true
 	})
 
-	it('Renders Hello Nuxt', async () => {
-		expect(await $fetch('/')).toMatch('Hello Nuxt!')
+	it('Форма регистрации', async () => {
+		expect(await $fetch('/')).toMatch('Зарегистрироваться')
+	})
+
+	it('Форма входа', async () => {
+		expect(await $fetch('/')).toMatch('Войти')
 	})
 
 	if (isDev()) {
