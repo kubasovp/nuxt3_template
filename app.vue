@@ -8,6 +8,15 @@ const form = reactive({
 	password: ""
 })
 
+const currentUser = reactive({
+	isLogin: false,
+	displayName: '',
+	email: '',
+	photoURL: '',
+	emailVerified: '',
+	uid: '',
+})
+
 let userAcc = reactive({});
 let isLogin = ref(false);
 
@@ -17,11 +26,7 @@ async function handleRegistration() {
 
 async function handleSignIn() {
 	userAcc = await signUser(form.email, form.password);
-	isLogin.value = true;
-}
-
-async function who() {
-	await getUserState();
+	currentUser.isLogin = true;
 }
 
 async function exit() {
@@ -33,11 +38,11 @@ onMounted(() => {
 	const auth = getAuth();
 	onAuthStateChanged(auth, (user) => {
 		if (user) {
-			console.log('displayName', user.displayName);
-			console.log('email', user.email);
-			console.log('photoURL', user.photoURL);
-			console.log('emailVerified', user.emailVerified);
-			console.log('uid', user.uid);
+			currentUser.displayName = user.displayName;
+			currentUser.email = user.email;
+			currentUser.photoURL = user.photoURL;
+			currentUser.emailVerified = user.emailVerified;
+			currentUser.uid = user.uid;
 		} else {
 			console.log('User is signed out');
 		}
@@ -49,39 +54,46 @@ onMounted(() => {
 	<main class="grid">
 		<section class="content">
 			<h1>Nuxt 3, Firebase, <s>Pinia</s></h1>
-			<div class="login_form">
-				<form>
-					<fieldset>
-						<legend>Зарегистрироваться</legend>
-						<input v-model="form.email" type="email" name="email" id="">
-						<input v-model="form.password" type="password" name="password" id="">
-						<button @click.prevent="handleRegistration">Зарегистрироваться</button>
-					</fieldset>
-				</form>
-			</div>
 
-			<div class="authorization_form">
+			<form class="form authorization_form">
+				<fieldset>
+					<legend>Зарегистрироваться</legend>
+					<input v-model="form.email" type="email" name="email" id="">
+					<input v-model="form.password" type="password" name="password" id="">
+					<button @click.prevent="handleRegistration">Зарегистрироваться</button>
+				</fieldset>
+			</form>
+
+			<form class="form authorization_form">
 				<fieldset>
 					<legend>Войти</legend>
-					<p>test@test.ru</p>
-					<p>123456</p>
 					<input v-model="form.email" type="email" name="email" id="">
 					<input v-model="form.password" type="password" name="password" id="">
 					<button @click.prevent="handleSignIn">Войти</button>
 				</fieldset>
-			</div>
+			</form>
 
-			<div class="authorization_form">
+			<form class="form form_profile">
 				<fieldset>
-					<legend>Получить данные пользователя</legend>
-					<button @click.prevent="who">Who</button>
+					<legend>Профиль пользователя</legend>
+					<ul>
+						<li>displayName: <strong>{{ currentUser.displayName }}</strong></li>
+						<li>email: <strong>{{ currentUser.email }}</strong></li>
+						<li>photoURL: <strong>{{ currentUser.photoURL }}</strong></li>
+						<li>emailVerified: <strong>{{ currentUser.emailVerified }}</strong></li>
+						<li>uid: <strong>{{ currentUser.uid }}</strong></li>
+					</ul>
 				</fieldset>
-			</div>
+			</form>
 
 			<button @click.prevent="exit">Выйти</button>
 
-			<h2 v-if="isLogin">Вы вошли как {{ userAcc.user.email }}</h2>
+			<h2 v-if="currentUser.isLogin">Вы вошли как {{ currentUser.email }}</h2>
 			<h2 v-else>Вы не вошли</h2>
+
+			<h4>Тестовый аккаунт</h4>
+			<p>test@test.ru</p>
+			<p>123456</p>
 		</section>
 
 		<aside>
@@ -89,9 +101,8 @@ onMounted(() => {
 			<ul class="task-list">
 				<li class="task task_complete">Создать пользователя</li>
 				<li class="task task_complete">Войдите в систему с помощью адреса электронной почты и пароля</li>
-				<li class="task task_complete">Получить текущего вошедшего в систему пользователя</li>
 				<li class="task task_complete">Выход из системы</li>
-				<li class="task">Получить профиль пользователя</li>
+				<li class="task task_complete">Получить профиль пользователя</li>
 				<li class="task">Получите информацию о профиле пользователя, зависящую от поставщика услуг.</li>
 				<li class="task">Обновить профиль пользователя</li>
 				<li class="task">Отправить пользователю электронное письмо с подтверждением</li>
@@ -111,6 +122,14 @@ input
 	display grid
 	grid-template-columns 2fr 1fr
 	gap 32px
+
+.form fieldset
+	display grid
+	grid-template-columns: 2fr 2fr 1fr;
+	gap 16px
+
+.form_profile fieldset
+	grid-template-columns 1fr
 
 .task-list
 	padding: 0
