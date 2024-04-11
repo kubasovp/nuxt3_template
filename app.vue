@@ -48,6 +48,7 @@ onMounted(() => {
 <template>
 	<main class="grid">
 		<section class="content">
+			<h1>Nuxt 3, Firebase, <s>Pinia</s></h1>
 			<div class="login_form">
 				<form>
 					<fieldset>

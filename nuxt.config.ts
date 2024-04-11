@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
 	devtools: {enabled: true},
 	modules: [
-		'@nuxt/test-utils/module'
+		'@nuxt/test-utils/module',
+		'@pinia/nuxt',
 	]
 })
