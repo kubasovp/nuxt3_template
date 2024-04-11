@@ -4,10 +4,7 @@ import { getFirestore } from 'firebase/firestore'
 import { getAnalytics } from "firebase/analytics"
 
 export default defineNuxtPlugin(nuxtApp => {
-	const config = useRuntimeConfig()
-
 	const firebaseConfig = {
-		// measurementId: config.FB_MEASUREMENT_ID
 		apiKey: "AIzaSyAylZ5F-8x8ohF7Sx22H3_pKsaMESrxEXY",
 		authDomain: "xtray-nuxt3.firebaseapp.com",
 		projectId: "xtray-nuxt3",
@@ -17,7 +14,6 @@ export default defineNuxtPlugin(nuxtApp => {
 	};
 
 	const app = initializeApp(firebaseConfig);
-	const analytics = getAnalytics(app);
 	const auth = getAuth(app);
 	const firestore = getFirestore(app);
 

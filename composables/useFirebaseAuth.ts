@@ -29,31 +29,12 @@ export default function() {
 			const userCredential = await signInWithEmailAndPassword(<Auth>$auth, email, password);
 			if (userCredential) {
 				user.value = userCredential.user;
-				console.log('Вход успешен:', userCredential.user.email);
+				console.log('Вошли как:', userCredential.user.email);
 				return userCredential;
 			}
 		} catch (error: unknown) {
 			if (error instanceof Error) {
 				console.log('Ошибка входа:', error);
-			}
-			return false;
-		}
-		return false;
-	}
-
-	const getUserState = async (): Promise<boolean> => {
-		try {
-			onAuthStateChanged(<Auth>$auth, (user) => {
-				if (user) {
-					console.log('Авторизованный пользователь', user.email);
-					return true;
-				} else {
-					console.log('Вы не вошли');
-				}
-			});
-		} catch (error: unknown) {
-			if (error instanceof Error) {
-				console.log('не удалось получить данные пользователя', error);
 			}
 			return false;
 		}
@@ -77,7 +58,6 @@ export default function() {
 		user,
 		registerUser,
 		signUser,
-		getUserState,
 		userSignOut
 	}
 }

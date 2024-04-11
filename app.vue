@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const { registerUser, signUser, getUserState, userSignOut } = useFirebaseAuth();
+import {getAuth, onAuthStateChanged} from "firebase/auth";
+
+const { registerUser, signUser, userSignOut } = useFirebaseAuth();
 
 const form = reactive({
 	email: "",
@@ -26,6 +28,21 @@ async function exit() {
 	userAcc = await userSignOut();
 	isLogin.value = false;
 }
+
+onMounted(() => {
+	const auth = getAuth();
+	onAuthStateChanged(auth, (user) => {
+		if (user) {
+			console.log('displayName', user.displayName);
+			console.log('email', user.email);
+			console.log('photoURL', user.photoURL);
+			console.log('emailVerified', user.emailVerified);
+			console.log('uid', user.uid);
+		} else {
+			console.log('User is signed out');
+		}
+	});
+});
 </script>
 
 <template>
