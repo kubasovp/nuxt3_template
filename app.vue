@@ -1,11 +1,4 @@
 <script setup lang="ts">
-
-
-const form = reactive({
-	email: "",
-	password: ""
-})
-
 const currentUser = reactive({
 	isLogin: false,
 	displayName: '',
@@ -17,8 +10,6 @@ const currentUser = reactive({
 
 let userAcc = reactive({});
 let isLogin = ref(false);
-
-
 </script>
 
 <template>
