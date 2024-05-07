@@ -1,15 +1,29 @@
 <script setup lang="ts">
 import {getAuth, onAuthStateChanged} from "firebase/auth";
+import {useUserStore} from "~/stores/user.store";
+
+const userData: object = {
+	isLogin: true,
+	displayName: '',
+	email: '',
+	photoURL: '',
+	emailVerified: '',
+	uid: ''
+};
+
+const currentUser = useUserStore();
 
 onMounted(() => {
 	const auth = getAuth();
 	onAuthStateChanged(auth, (user) => {
 		if (user) {
-			currentUser.displayName = user.displayName;
-			currentUser.email = user.email;
-			currentUser.photoURL = user.photoURL;
-			currentUser.emailVerified = user.emailVerified;
-			currentUser.uid = user.uid;
+			userData.displayName = user.displayName;
+			userData.email = user.email;
+			userData.photoURL = user.photoURL;
+			userData.emailVerified = user.emailVerified;
+			userData.uid = user.uid;
+			currentUser.setUser(userData);
+
 		} else {
 			console.log('User is signed out');
 		}

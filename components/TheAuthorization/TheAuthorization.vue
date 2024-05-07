@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import {useUserStore} from "~/stores/user.store";
+
 const {signUser} = useFirebaseAuth();
+const currentUser = useUserStore();
 
 const form = reactive({
 	email: "",
@@ -7,8 +10,9 @@ const form = reactive({
 })
 
 async function handleSignIn() {
-	userAcc = await signUser(form.email, form.password);
-	currentUser.isLogin = true;
+	let userAcc = await signUser(form.email, form.password);
+	console.log('userAcc', userAcc);
+	currentUser.setUser(userAcc);
 }
 </script>
 

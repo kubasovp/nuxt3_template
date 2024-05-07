@@ -1,21 +1,11 @@
 <script setup lang="ts">
-const currentUser = reactive({
-	isLogin: false,
-	displayName: '',
-	email: '',
-	photoURL: '',
-	emailVerified: '',
-	uid: '',
-})
 
-let userAcc = reactive({});
-let isLogin = ref(false);
 </script>
 
 <template>
 	<main class="grid">
 		<section class="content">
-			<h1>Nuxt 3, Firebase, <s>Pinia</s></h1>
+			<h1>Nuxt 3, Firebase, Pinia</h1>
 
 			<TheRegistration />
 
