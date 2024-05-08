@@ -5,7 +5,7 @@ interface currentUser {
 	displayName: string,
 	email: string,
 	photoURL: string,
-	emailVerified: string,
+	emailVerified: boolean,
 	uid: string,
 }
 
@@ -15,7 +15,7 @@ const defaultUser: { user: currentUser } = {
 		displayName: '',
 		email: '',
 		photoURL: '',
-		emailVerified: '',
+		emailVerified: false,
 		uid: '',
 	}
 }
