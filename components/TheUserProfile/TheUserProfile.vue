@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import {getAuth, onAuthStateChanged} from "firebase/auth";
-import {useUserStore} from "~/stores/user.store";
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { useUserStore } from '~/stores/user.store'
 
 interface currentUser {
-	isLogin: boolean,
-	displayName: string | null,
-	email: string | null,
-	photoURL: string | null,
-	emailVerified: boolean,
-	uid: string | null,
+	isLogin: boolean
+	displayName: string | null
+	email: string | null
+	photoURL: string | null
+	emailVerified: boolean
+	uid: string | null
 }
 
 const userData: currentUser = {
@@ -17,34 +17,38 @@ const userData: currentUser = {
 	email: '',
 	photoURL: '',
 	emailVerified: false,
-	uid: ''
-};
+	uid: '',
+}
 
-const userState = useUserStore();
+const userState = useUserStore()
 
 onMounted(() => {
-	const auth = getAuth();
+	const auth = getAuth()
 	onAuthStateChanged(auth, (user) => {
 		if (user) {
-			userData.isLogin = true;
-			userData.displayName = user.displayName;
-			userData.email = user.email;
-			userData.photoURL = user.photoURL;
-			userData.emailVerified = user.emailVerified;
-			userData.uid = user.uid;
-			userState.setUser(userData);
-
-		} else {
-			console.log('User is signed out');
+			userData.isLogin = true
+			userData.displayName = user.displayName
+			userData.email = user.email
+			userData.photoURL = user.photoURL
+			userData.emailVerified = user.emailVerified
+			userData.uid = user.uid
+			userState.setUser(userData)
 		}
-	});
-});
+		else {
+			console.log('User is signed out')
+		}
+	})
+})
 </script>
 
 <template>
 	<form class="form form_profile">
-		<h2 v-if="userState.isLogin">Вы вошли как {{ userState.email }}</h2>
-		<h2 v-else>Вы не вошли</h2>
+		<h2 v-if="userState.isLogin">
+			Вы вошли как {{ userState.email }}
+		</h2>
+		<h2 v-else>
+			Вы не вошли
+		</h2>
 		<fieldset>
 			<legend>Профиль пользователя</legend>
 			<ul>

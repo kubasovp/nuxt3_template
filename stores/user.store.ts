@@ -1,12 +1,10 @@
-import {create} from "node:domain";
-
 interface currentUser {
-	isLogin: boolean,
-	displayName: string,
-	email: string,
-	photoURL: string,
-	emailVerified: boolean,
-	uid: string,
+	isLogin: boolean
+	displayName: string
+	email: string
+	photoURL: string
+	emailVerified: boolean
+	uid: string
 }
 
 const defaultUser: { user: currentUser } = {
@@ -17,25 +15,25 @@ const defaultUser: { user: currentUser } = {
 		photoURL: '',
 		emailVerified: false,
 		uid: '',
-	}
+	},
 }
 
 export const useUserStore = defineStore('user', {
 	state: () => defaultUser,
 	getters: {
 		isLogin: (state) => {
-			return state.user.isLogin;
+			return state.user.isLogin
 		},
 		email: (state) => {
-			return state.user.email;
+			return state.user.email
 		},
 	},
 	actions: {
 		setUser(input: object) {
-			this.$patch({user: input});
+			this.$patch({ user: input })
 		},
 		clearUser() {
-			this.$patch(defaultUser);
-		}
-	}}
-)
+			this.$patch(defaultUser)
+		},
+	},
+})
