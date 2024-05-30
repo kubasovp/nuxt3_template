@@ -1,13 +1,6 @@
-interface currentUser {
-	isLogin: boolean
-	displayName: string
-	email: string
-	photoURL: string
-	emailVerified: boolean
-	uid: string
-}
+import type { CurrentUser } from '@/types/types'
 
-const defaultUser: { user: currentUser } = {
+const defaultUser: { user: CurrentUser } = {
 	user: {
 		isLogin: false,
 		displayName: '',

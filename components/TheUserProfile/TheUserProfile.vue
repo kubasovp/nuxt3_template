@@ -1,17 +1,9 @@
 <script setup lang="ts">
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { useUserStore } from '~/stores/user.store'
+import type { CurrentUser } from '@/types/types'
 
-interface currentUser {
-	isLogin: boolean
-	displayName: string | null
-	email: string | null
-	photoURL: string | null
-	emailVerified: boolean
-	uid: string | null
-}
-
-const userData: currentUser = {
+const userData: CurrentUser = {
 	isLogin: false,
 	displayName: '',
 	email: '',
