@@ -1,9 +1,14 @@
 <script setup lang="ts">
+import { useUserStore } from '~/stores/user.store'
+
+const userState = useUserStore()
 const { userSignOut } = useFirebaseAuth()
 
 async function logOut() {
-	userAcc = await userSignOut()
-	isLogin.value = false
+	const userAcc: boolean | object = await userSignOut()
+	userState.clearUser()
+
+	// isLogin.value = false
 }
 </script>
 

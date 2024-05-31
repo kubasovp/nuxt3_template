@@ -2,7 +2,7 @@
 import { useUserStore } from '~/stores/user.store'
 
 const { signUser } = useFirebaseAuth()
-const currentUser = useUserStore()
+const userStore = useUserStore()
 
 const form = reactive({
 	email: '',
@@ -10,9 +10,18 @@ const form = reactive({
 })
 
 async function handleSignIn() {
-	const userAcc = await signUser(form.email, form.password)
-	console.log('userAcc', userAcc)
-	currentUser.setUser(userAcc)
+	const userData = await signUser(form.email, form.password)
+
+	// Обновляем стор
+	userStore.setUser({
+		uid: userData.user.uid,
+		displayName: userData.user.displayName || '',
+		email: userData.user.email || '',
+		photoURL: userData.user.photoURL || '',
+		emailVerified: userData.user.emailVerified,
+	})
+
+	console.log('userStore.isLogin', userStore.isLogin)
 }
 </script>
 

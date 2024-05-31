@@ -1,32 +1,54 @@
-import type { CurrentUser } from '@/types/types'
+import { defineStore } from 'pinia'
 
-const CurrentUser: { user: CurrentUser } = {
-	user: {
-		isLogin: false,
-		displayName: '',
-		email: '',
-		photoURL: '',
-		emailVerified: false,
-		uid: '',
-	},
+interface User {
+	uid: string
+	displayName: string
+	email: string
+	photoURL: string
+	emailVerified: boolean
+}
+
+interface State {
+	currentUser: User | null
 }
 
 export const useUserStore = defineStore('user', {
-	state: () => CurrentUser,
+	state: (): State => ({
+		currentUser: null,
+	}),
 	getters: {
 		isLogin: (state) => {
-			return state.user.isLogin
-		},
-		email: (state) => {
-			return state.user.email
+			return state.currentUser
 		},
 	},
 	actions: {
-		setUser(input: object) {
-			this.$patch({ user: input })
+		setUser(user: User) {
+			this.currentUser = user
 		},
 		clearUser() {
-			this.$patch(CurrentUser)
+			this.currentUser = null
 		},
 	},
 })
+
+// const currentUser: object = {}
+//
+// export const useUserStore = defineStore('user', {
+// 	state: () => currentUser,
+// 	getters: {
+// 		isLogin: (state) => {
+// 			return state.isLogin
+// 		},
+// 		email: (state) => {
+// 			return state
+// 		},
+// 	},
+// 	actions: {
+// 		setUser(input: object) {
+// 			this.$patch({ state: input })
+// 		},
+// 		clearUser() {
+// 			this.$patch(currentUser)
+// 		},
+// 	},
+// })
