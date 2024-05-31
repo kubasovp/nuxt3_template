@@ -1,6 +1,6 @@
 import type { CurrentUser } from '@/types/types'
 
-const defaultUser: { user: CurrentUser } = {
+const CurrentUser: { user: CurrentUser } = {
 	user: {
 		isLogin: false,
 		displayName: '',
@@ -12,7 +12,7 @@ const defaultUser: { user: CurrentUser } = {
 }
 
 export const useUserStore = defineStore('user', {
-	state: () => defaultUser,
+	state: () => CurrentUser,
 	getters: {
 		isLogin: (state) => {
 			return state.user.isLogin
@@ -26,7 +26,7 @@ export const useUserStore = defineStore('user', {
 			this.$patch({ user: input })
 		},
 		clearUser() {
-			this.$patch(defaultUser)
+			this.$patch(CurrentUser)
 		},
 	},
 })
