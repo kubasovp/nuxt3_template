@@ -25,25 +25,3 @@ export const useUserStore = defineStore('user', {
 		},
 	},
 })
-
-// const currentUser: object = {}
-//
-// export const useUserStore = defineStore('user', {
-// 	state: () => currentUser,
-// 	getters: {
-// 		isLogin: (state) => {
-// 			return state.isLogin
-// 		},
-// 		email: (state) => {
-// 			return state
-// 		},
-// 	},
-// 	actions: {
-// 		setUser(input: object) {
-// 			this.$patch({ state: input })
-// 		},
-// 		clearUser() {
-// 			this.$patch(currentUser)
-// 		},
-// 	},
-// })
