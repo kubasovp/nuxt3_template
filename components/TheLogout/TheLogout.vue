@@ -5,10 +5,8 @@ const userState = useUserStore()
 const { userSignOut } = useFirebaseAuth()
 
 async function logOut() {
-	const userAcc: boolean | object = await userSignOut()
+	await userSignOut()
 	userState.clearUser()
-
-	// isLogin.value = false
 }
 </script>
 
