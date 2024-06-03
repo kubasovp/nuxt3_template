@@ -16,11 +16,6 @@ export const useUserStore = defineStore('user', {
 	state: (): State => ({
 		currentUser: null,
 	}),
-	getters: {
-		isLogin: (state) => {
-			return state.currentUser
-		},
-	},
 	actions: {
 		setUser(user: User) {
 			this.currentUser = user
