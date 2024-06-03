@@ -34,7 +34,7 @@
 				<li class="task">
 					Обновить профиль пользователя
 				</li>
-				<li class="task">
+				<li class="task task_complete">
 					Отправить пользователю электронное письмо с подтверждением
 				</li>
 				<li class="task">

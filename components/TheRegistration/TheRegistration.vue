@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { getAuth, sendEmailVerification } from 'firebase/auth'
+
 const { registerUser } = useFirebaseAuth()
 const form = reactive({
 	email: '',
@@ -7,6 +9,16 @@ const form = reactive({
 
 async function handleRegistration() {
 	await registerUser(form.email, form.password)
+
+	const auth = getAuth()
+	if (auth.currentUser) {
+		sendEmailVerification(auth.currentUser)
+			.then(() => {
+				console.log('Email verification sent!')
+				// Email verification sent!
+				// ...
+			})
+	}
 }
 </script>
 
