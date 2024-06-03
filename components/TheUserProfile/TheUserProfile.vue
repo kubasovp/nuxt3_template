@@ -1,36 +1,21 @@
 <script setup lang="ts">
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { useUserStore } from '~/stores/user.store'
-// import type { CurrentUser } from '@/types/types'
 
 const userStore = useUserStore()
 const currentUser = computed(() => userStore.currentUser)
-
-// const userData: CurrentUser = {
-// 	isLogin: false,
-// 	displayName: '',
-// 	email: '',
-// 	photoURL: '',
-// 	emailVerified: false,
-// 	uid: '',
-// }
-
-const userState = useUserStore()
 
 onMounted(() => {
 	const auth = getAuth()
 	onAuthStateChanged(auth, (user) => {
 		if (user) {
-			// userData.isLogin = true
-			// userData.displayName = user.displayName
-			// userData.email = user.email
-			// userData.photoURL = user.photoURL
-			// userData.emailVerified = user.emailVerified
-			// userData.uid = user.uid
-			// userState.setUser(userData)
-			// userState.isLogin
-			console.log('TheUserProfile.vue userState.email', userState.email)
-			console.log('TheUserProfile.vue userState.isLogin', userState.isLogin)
+			userStore.setUser({
+				uid: user.uid,
+				displayName: user.displayName || '',
+				email: user.email || '',
+				photoURL: user.photoURL || '',
+				emailVerified: user.emailVerified,
+			})
 		}
 		else {
 			console.log('User is signed out')
@@ -50,6 +35,7 @@ onMounted(() => {
 
 		<fieldset>
 			<legend>Профиль пользователя</legend>
+
 			<ul v-if="currentUser">
 				<li>displayName: <strong>{{ currentUser.displayName }}</strong></li>
 				<li>email: <strong>{{ currentUser.email }}</strong></li>

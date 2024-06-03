@@ -12,7 +12,6 @@ const form = reactive({
 async function handleSignIn() {
 	const userData = await signUser(form.email, form.password)
 
-	// Обновляем стор
 	userStore.setUser({
 		uid: userData.user.uid,
 		displayName: userData.user.displayName || '',
@@ -20,8 +19,6 @@ async function handleSignIn() {
 		photoURL: userData.user.photoURL || '',
 		emailVerified: userData.user.emailVerified,
 	})
-
-	console.log('userStore.isLogin', userStore.isLogin)
 }
 </script>
 
