@@ -31,9 +31,6 @@
 				<li class="task task_complete">
 					Получить профиль пользователя
 				</li>
-				<li class="task task_complete">
-					Получите информацию о профиле пользователя.
-				</li>
 				<li class="task">
 					Обновить профиль пользователя
 				</li>
