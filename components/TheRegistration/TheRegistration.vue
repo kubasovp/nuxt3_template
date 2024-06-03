@@ -10,13 +10,12 @@ const form = reactive({
 async function handleRegistration() {
 	await registerUser(form.email, form.password)
 
+	// Отправляем письмо для подтверждения email
 	const auth = getAuth()
 	if (auth.currentUser) {
 		sendEmailVerification(auth.currentUser)
 			.then(() => {
 				console.log('Email verification sent!')
-				// Email verification sent!
-				// ...
 			})
 	}
 }
