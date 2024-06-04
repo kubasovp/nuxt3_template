@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
-import { useUserStore } from '~/stores/user.store'
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { useUserStore } from '~/stores/user.store';
 
-const userStore = useUserStore()
-const currentUser = computed(() => userStore.currentUser)
+const userStore = useUserStore();
+const currentUser = computed(() => userStore.currentUser);
 
 onMounted(() => {
-	const auth = getAuth()
+	const auth = getAuth();
 	onAuthStateChanged(auth, (user) => {
 		if (user) {
 			userStore.setUser({
@@ -15,13 +15,13 @@ onMounted(() => {
 				email: user.email || '',
 				photoURL: user.photoURL || '',
 				emailVerified: user.emailVerified,
-			})
+			});
 		}
 		else {
-			console.log('User is signed out')
+			console.log('User is signed out');
 		}
-	})
-})
+	});
+});
 </script>
 
 <template>

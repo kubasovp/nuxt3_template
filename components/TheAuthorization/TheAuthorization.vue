@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import type { FormInstance } from 'element-plus'
-import { useUserStore } from '~/stores/user.store'
+import type { FormInstance } from 'element-plus';
+import { useUserStore } from '~/stores/user.store';
 
-const { signUser } = useFirebaseAuth()
-const userStore = useUserStore()
+const { signUser } = useFirebaseAuth();
+const userStore = useUserStore();
 
-const formRef = ref<FormInstance>()
+const formRef = ref<FormInstance>();
 const formData = reactive<{
-	password: string
-	email: string
+	password: string;
+	email: string;
 }>({
 	password: '',
 	email: '',
-})
+});
 
 async function handleSignIn() {
-	const userData = await signUser(formData.email, formData.password)
+	const userData = await signUser(formData.email, formData.password);
 
 	userStore.setUser({
 		uid: userData.user.uid,
@@ -23,7 +23,7 @@ async function handleSignIn() {
 		email: userData.user.email || '',
 		photoURL: userData.user.photoURL || '',
 		emailVerified: userData.user.emailVerified,
-	})
+	});
 }
 </script>
 
@@ -36,34 +36,15 @@ async function handleSignIn() {
 		class="form authorization_form demo-dynamic"
 	>
 		<fieldset>
-			<legend>Войти</legend>
+			<legend>Вход</legend>
 
-			<el-form-item
-				prop="email"
-				label="Email"
-				:rules="[
-					{
-						required: true,
-						message: 'Please input email address',
-						trigger: 'blur',
-					},
-					{
-						type: 'email',
-						message: 'Please input correct email address',
-						trigger: ['blur', 'change'],
-					},
-				]"
-			>
-				<el-input v-model="formData.email" />
-			</el-form-item>
+			<EmailInput v-model="formData.email" label="Email" />
 
-			<el-form-item label="Password" prop="pass">
-				<el-input v-model="formData.password" type="password" autocomplete="off" />
-			</el-form-item>
+			<PasswordInput v-model="formData.password" label="Password" />
 
-			<el-button type="primary" plain @click.prevent="handleSignIn">
+			<Button type="primary" plain @send="handleSignIn">
 				Войти
-			</el-button>
+			</Button>
 		</fieldset>
 	</el-form>
 </template>
@@ -71,5 +52,4 @@ async function handleSignIn() {
 <style scoped lang="stylus">
 
 </style>
-<!-- два компонента или один с полями ввода? -->
 <!-- обновить зависимости -->

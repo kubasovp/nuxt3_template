@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import { useUserStore } from '~/stores/user.store'
+import { useUserStore } from '~/stores/user.store';
 
-const userState = useUserStore()
-const { userSignOut } = useFirebaseAuth()
+const userState = useUserStore();
+const { userSignOut } = useFirebaseAuth();
 
 async function logOut() {
-	await userSignOut()
-	userState.clearUser()
+	await userSignOut();
+	userState.clearUser();
 }
 </script>
 
 <template>
-	<button @click.prevent="logOut">
+	<Button type="primary" plain @click="logOut">
 		Выйти
-	</button>
+	</Button>
 </template>
 
 <style scoped lang="stylus">
