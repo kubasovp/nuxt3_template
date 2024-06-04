@@ -23,6 +23,8 @@ const props = defineProps({
 });
 const inputValue = ref(props.modelValue);
 
+// Todo
+// так ли нужен тут вотчер?
 watch(() => props.modelValue, (newValue) => {
 	inputValue.value = newValue;
 });
