@@ -1,16 +1,21 @@
 <script setup lang="ts">
-import { useUserStore } from '~/stores/user.store'
+import type { FormInstance } from 'element-plus';
+import { useUserStore } from '~/stores/user.store';
 
-const { signUser } = useFirebaseAuth()
-const userStore = useUserStore()
+const { signUser } = useFirebaseAuth();
+const userStore = useUserStore();
 
-const form = reactive({
-	email: '',
+const formRef = ref<FormInstance>();
+const formData = reactive<{
+	password: string;
+	email: string;
+}>({
 	password: '',
-})
+	email: '',
+});
 
 async function handleSignIn() {
-	const userData = await signUser(form.email, form.password)
+	const userData = await signUser(formData.email, formData.password);
 
 	userStore.setUser({
 		uid: userData.user.uid,
@@ -18,23 +23,33 @@ async function handleSignIn() {
 		email: userData.user.email || '',
 		photoURL: userData.user.photoURL || '',
 		emailVerified: userData.user.emailVerified,
-	})
+	});
 }
 </script>
 
 <template>
-	<form class="form authorization_form">
+	<el-form
+		ref="formRef"
+		style="max-width: 600px"
+		:model="formData"
+		label-width="auto"
+		class="form authorization_form demo-dynamic"
+	>
 		<fieldset>
-			<legend>Войти</legend>
-			<input id="" v-model="form.email" type="email" name="email">
-			<input id="" v-model="form.password" type="password" name="password">
-			<button @click.prevent="handleSignIn">
+			<legend>Вход</legend>
+
+			<EmailInput v-model="formData.email" label="Email" />
+
+			<PasswordInput v-model="formData.password" label="Password" />
+
+			<Button type="primary" plain @send="handleSignIn">
 				Войти
-			</button>
+			</Button>
 		</fieldset>
-	</form>
+	</el-form>
 </template>
 
 <style scoped lang="stylus">
 
 </style>
+<!-- обновить зависимости -->

@@ -55,6 +55,16 @@
 input
 	border 1px solid coral
 
+// https://stackoverflow.com/questions/2781549/removing-input-background-colour-for-chrome-autocomplete
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: #333;
+	transition: background-color 5000s ease-in-out 0s;
+	box-shadow: inset 0 0 20px 20px #fff;
+
 .grid
 	display grid
 	grid-template-columns 2fr 1fr
