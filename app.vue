@@ -12,8 +12,6 @@
 			<TheAuthorization />
 
 			<TheUserProfile />
-
-			<TheLogout />
 		</section>
 
 		<aside>

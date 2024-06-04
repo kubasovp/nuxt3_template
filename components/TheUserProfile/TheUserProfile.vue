@@ -36,13 +36,21 @@ onMounted(() => {
 		<fieldset>
 			<legend>Профиль пользователя</legend>
 
-			<ul v-if="currentUser">
-				<li>displayName: <strong>{{ currentUser.displayName }}</strong></li>
-				<li>email: <strong>{{ currentUser.email }}</strong></li>
-				<li>photoURL: <strong>{{ currentUser.photoURL }}</strong></li>
-				<li>emailVerified: <strong>{{ currentUser.emailVerified }}</strong></li>
-				<li>uid: <strong>{{ currentUser.uid }}</strong></li>
-			</ul>
+			<div v-if="currentUser" class="user-info">
+				<ul>
+					<li>displayName: <strong>{{ currentUser.displayName }}</strong></li>
+					<li>email: <strong>{{ currentUser.email }}</strong></li>
+					<li>photoURL: <strong>{{ currentUser.photoURL }}</strong></li>
+					<li>emailVerified: <strong>{{ currentUser.emailVerified }}</strong></li>
+					<li>uid: <strong>{{ currentUser.uid }}</strong></li>
+				</ul>
+
+				<TheLogout />
+			</div>
+
+			<p v-else>
+				* Данные появятся после регистрации/авторизации
+			</p>
 		</fieldset>
 	</form>
 </template>

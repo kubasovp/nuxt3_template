@@ -29,7 +29,6 @@ async function handleRegistration() {
 <template>
 	<el-form
 		ref="formRef"
-		style="max-width: 600px"
 		:model="formData"
 		label-width="auto"
 		class="form authorization_form demo-dynamic"
