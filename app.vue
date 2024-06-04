@@ -46,6 +46,9 @@
 				<li class="task">
 					Удаление пользователя
 				</li>
+				<li class="task task_complete">
+					Добавить библиотеку Element Plus
+				</li>
 			</ul>
 		</aside>
 	</main>
