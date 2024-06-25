@@ -42,10 +42,30 @@
 					Отправить электронное письмо для сброса пароля
 				</li>
 				<li class="task">
-					Удаление пользователя
+					Удаление пользователя (?)
 				</li>
 				<li class="task task_complete">
 					Добавить библиотеку Element Plus
+				</li>
+				<li class="task">
+					Добавить библиотеку PrimeVue и попытаться подружить её с Element Plus
+				</li>
+				<li class="task">
+					Прикрутить базу фильмов (https://kinopoiskdev.readme.io/) с функционалом:
+					<ul class="subtask-list">
+						<li class="task">
+							поиск фильмов
+						</li>
+						<li class="task">
+							добавление/удаление в избранное
+						</li>
+						<li class="task">
+							смена статуса фильма (смотрел/не смотрел)
+						</li>
+						<li class="task">
+							фильтр по статусу
+						</li>
+					</ul>
 				</li>
 			</ul>
 		</aside>
