@@ -6,7 +6,7 @@ const props = defineProps({
 		default: 'Email',
 	},
 	rules: {
-		type: Array,
+		type: Array as () => Array<object>,
 		default: () => [
 			{
 				required: true,
@@ -32,7 +32,7 @@ watch(() => props.modelValue, (newValue) => {
 
 <template>
 	<el-form-item :label="label" :rules="rules">
-		<el-input v-model="inputValue" type="email" @input="$emit('update:modelValue', inputValue)" />
+		<el-input v-model="inputValue" @input="$emit('update:modelValue', inputValue)" />
 	</el-form-item>
 </template>
 
