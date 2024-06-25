@@ -10,6 +10,7 @@ onMounted(() => {
 	onAuthStateChanged(auth, (user) => {
 		if (user) {
 			userStore.setUser({
+				isLogin: true,
 				uid: user.uid,
 				displayName: user.displayName || '',
 				email: user.email || '',

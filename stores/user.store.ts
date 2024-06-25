@@ -1,15 +1,8 @@
 import { defineStore } from 'pinia';
-
-interface User {
-	uid: string;
-	displayName: string;
-	email: string;
-	photoURL: string;
-	emailVerified: boolean;
-}
+import type { CurrentUser } from '@/types/types';
 
 interface State {
-	currentUser: User | null;
+	currentUser: CurrentUser | null;
 }
 
 export const useUserStore = defineStore('user', {
@@ -17,7 +10,7 @@ export const useUserStore = defineStore('user', {
 		currentUser: null,
 	}),
 	actions: {
-		setUser(user: User) {
+		setUser(user: CurrentUser) {
 			this.currentUser = user;
 		},
 		clearUser() {

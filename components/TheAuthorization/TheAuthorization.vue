@@ -17,13 +17,16 @@ const formData = reactive<{
 async function handleSignIn() {
 	const userData = await signUser(formData.email, formData.password);
 
-	userStore.setUser({
-		uid: userData.user.uid,
-		displayName: userData.user.displayName || '',
-		email: userData.user.email || '',
-		photoURL: userData.user.photoURL || '',
-		emailVerified: userData.user.emailVerified,
-	});
+	if (userData) {
+		userStore.setUser({
+			isLogin: !!userData,
+			uid: userData.user.uid,
+			displayName: userData.user.displayName || '',
+			email: userData.user.email || '',
+			photoURL: userData.user.photoURL || '',
+			emailVerified: userData.user.emailVerified,
+		});
+	}
 }
 </script>
 
