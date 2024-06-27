@@ -51,7 +51,7 @@ async function handleSignIn() {
 	</el-form>
 </template>
 
-<style scoped lang="stylus">
+<style scoped lang="scss">
 
 </style>
 <!-- обновить зависимости -->

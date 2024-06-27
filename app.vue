@@ -72,48 +72,57 @@
 	</main>
 </template>
 
-<style lang="stylus">
-input
-	border 1px solid coral
+<style lang="scss">
+input {
+	border: 1px solid coral;
+}
 
 // https://stackoverflow.com/questions/2781549/removing-input-background-colour-for-chrome-autocomplete
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
-input:-webkit-autofill:active
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: #333;
-	transition: background-color 5000s ease-in-out 0s;
-	box-shadow: inset 0 0 20px 20px #fff;
+input:-webkit-autofill:active {
+	          -webkit-background-clip: text;
+	          -webkit-text-fill-color: #333;
+	          transition: background-color 5000s ease-in-out 0s;
+	          box-shadow: inset 0 0 20px 20px #fff;
+          }
 
-.grid
-	display grid
-	grid-template-columns 2fr 1fr
-	gap 32px
+.grid {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	gap: 32px;
+}
 
-.form fieldset
-	display grid
+.form fieldset {
+	display: grid;
 	grid-template-columns: 2fr 2fr 1fr;
-	gap 16px
+	gap: 16px;
+}
 
-.form_profile fieldset
-	grid-template-columns 1fr
+.form_profile fieldset {
+	grid-template-columns: 1fr;
+}
 
-.task-list
-	padding: 0
+.task-list {
+	padding: 0;
 	list-style-type: none;
+}
 
-.task
-	padding-left: 24px
+.task {
+	padding-left: 24px;
 	text-indent: -24px;
 
-	&::before
-		color tomato
-		content "☓"
-		padding-right 10px
-
-.task_complete
-	&::before
-		color green
-		content "✓"
+	&::before {
+		color: tomato;
+		content: "☓" ;
+		padding-right: 10px;
+	}
+}
+.task_complete {
+	&::before {
+		color: green;
+		content: "✓";
+	}
+}
 </style>
