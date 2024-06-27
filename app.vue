@@ -45,7 +45,7 @@
 					Удаление пользователя (?)
 				</li>
 				<li class="task task_complete">
-					Добавить библиотеку Element Plus
+					<s>Добавить</s> Выпилить библиотеку Element Plus
 				</li>
 				<li class="task">
 					Добавить библиотеку PrimeVue и попытаться подружить её с Element Plus
