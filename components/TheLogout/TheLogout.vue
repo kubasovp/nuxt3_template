@@ -16,6 +16,6 @@ async function logOut() {
 	</Button>
 </template>
 
-<style scoped lang="stylus">
+<style scoped>
 
 </style>

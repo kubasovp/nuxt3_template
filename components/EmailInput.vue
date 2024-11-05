@@ -36,6 +36,6 @@ watch(() => props.modelValue, (newValue) => {
 	</el-form-item>
 </template>
 
-<style scoped lang="stylus">
+<style scoped>
 
 </style>

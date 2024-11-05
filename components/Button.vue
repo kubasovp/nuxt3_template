@@ -7,5 +7,5 @@
 	</el-button>
 </template>
 
-<style scoped lang="stylus">
+<style scoped>
 </style>

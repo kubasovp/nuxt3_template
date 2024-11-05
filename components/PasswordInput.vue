@@ -16,5 +16,5 @@ const inputValue = ref(props.modelValue);
 	</el-form-item>
 </template>
 
-<style scoped lang="stylus">
+<style scoped>
 </style>
